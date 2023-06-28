@@ -18,7 +18,10 @@ Yarn Version: 3.2.4
 docker build -t node_yarn:latest . -f ContainerFile
 ```
 
-### Running Lighttpd Container Image
+### Running Node Yarn Container Image
 ```
-docker run --rm -it --name node_yarn -p 3000:3000 node_yarn:latest
+docker run --rm -it --name node_yarn \
+ -p 3000:3000 \
+ -v $PWD:/sync/ \
+ brpedromaia/node_yarn:v2 bash
 ```

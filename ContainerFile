@@ -74,4 +74,5 @@ RUN apk add --no-cache libstdc++ \
 COPY --chmod=0777 my_templatiser /usr/bin/
 
 
-USER on4b
+RUN adduser -s /bin/bash -u 1001 -D -h /home/nonrootuser nonrootuser nonrootuser
+USER nonrootuser
