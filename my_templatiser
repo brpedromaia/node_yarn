@@ -1,0 +1,34 @@
+#!/bin/bash
+
+APP_VAR_SUFIX=$1
+APP_TEMPLATE_FOLDER=$2
+
+APP_ENV_VARS=(`env|grep "$APP_VAR_SUFIX"| cut -d "=" -f1| tr '\n' ' '`)
+APP_TEMPLATE_FILES=(`grep -rl "$APP_VAR_SUFIX" $APP_TEMPLATE_FOLDER/| tr '\n' ' '`)
+
+function replaceVars(){
+
+  TEMPLATE_FILE=$1
+  echo "$TEMPLATE_FILE: Templatising file"
+
+  for APP_ENV_VAR in ${APP_ENV_VARS[@]}; do
+    if [ "$APP_ENV_VAR" != " " ];then
+
+    CURRENT_APP_ENV_VAR=$(eval echo \$$APP_ENV_VAR)
+    echo "Replacing: $APP_ENV_VAR -> $CURRENT_APP_ENV_VAR"
+
+    sed -i "s|$APP_ENV_VAR|$CURRENT_APP_ENV_VAR|g" $TEMPLATE_FILE
+
+    fi
+  done
+  echo "$TEMPLATE_FILE: Template finished"
+}
+
+for MY_TEMPLATE_FILE in ${MY_TEMPLATE_FILES[@]}; do
+
+  if [ "$MY_TEMPLATE_FILE" != " " ];then
+    echo "starting file $MY_TEMPLATE_FILE"
+    replaceVars $MY_TEMPLATE_FILE
+  fi
+  
+done

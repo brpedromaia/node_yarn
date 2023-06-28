@@ -1,0 +1,14 @@
+#!/bin/bash
+
+development_mode(){
+
+  [ ! -d "$HOME/.cache" ] && [ -d "/sync/.yarn-cache/.cache" ] && ln -s /sync/.yarn-cache/.cache /$HOME/.cache
+  [ "$YARN_INSTALL" == "yes" ] && yarn install --pure-lockfile --non-interactive --prefer-offline --network-timeout 1000000
+  yarn dev
+
+}
+
+case "$1" in
+  dev) development_mode;;
+  *) $@ ;; 
+esac
