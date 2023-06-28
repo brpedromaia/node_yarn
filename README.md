@@ -21,7 +21,7 @@ docker build -t node_yarn:latest . -f ContainerFile
 ### Running Node Yarn Container Image
 ```
 docker run --rm -it --name node_yarn \
- -p 3000:3000 \
+ -p 36543:36543 \
  -v $PWD:/sync/ \
- brpedromaia/node_yarn:v2 bash
+ brpedromaia/node_yarn:v2 sh
 ```
