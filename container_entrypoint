@@ -7,8 +7,4 @@ development_mode(){
   yarn dev
 
 }
-
-case "$1" in
-  dev) development_mode;;
-  *) $@ ;; 
-esac
+[[ "$DEVELOPMENT_MODE" == "yes" ]] && dev

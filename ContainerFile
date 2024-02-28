@@ -72,7 +72,8 @@ RUN apk add --no-cache libstdc++ \
   && corepack prepare yarn@$YARN_VERSION --activate
 
 COPY --chmod=0777 my_templatiser /usr/bin/
-
+COPY --chmod=0777 container_entrypoint /container_entrypoint
 
 RUN adduser -s /bin/bash -u 1001 -D -h /home/nonrootuser nonrootuser nonrootuser
 USER nonrootuser
+ENTRYPOINT [ "/container_entrypoint" ]
