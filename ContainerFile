@@ -5,7 +5,7 @@ ENV YARN_VERSION 3.2.4
 
 USER root
 
-RUN apk add --no-cache libstdc++ \
+RUN apk add --no-cache libstdc++ bash git\
     && apk add --no-cache --virtual .build-deps \
         curl \
     && ARCH= && alpineArch="$(apk --print-arch)" \
