@@ -7,4 +7,4 @@ development_mode(){
   yarn dev
 
 }
-[[ "$DEVELOPMENT_MODE" == "yes" ]] && dev
+[[ "$DEVELOPMENT_MODE" == "yes" ]] && development_mode
